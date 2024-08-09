@@ -16,6 +16,7 @@ import { ChatLlmComponent } from './chat-llm/chat-llm.component';
 import { SearchOffersComponent } from './search-offers/search-offers.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { OffresService } from './services/offres.service';
+import { CreateCVComponent } from './create-cv/create-cv.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { OffresService } from './services/offres.service';
     VerifyAffComponent,
     ChatLlmComponent,
     SearchOffersComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    CreateCVComponent
   ],
   imports: [
     BrowserModule,

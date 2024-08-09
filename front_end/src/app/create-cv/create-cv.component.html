@@ -1,0 +1,277 @@
+
+<div class="grid grid-cols-2 ">
+    <div
+      class="min-h-screen py-6 flex flex-col justify-center sm:py-12"
+    >
+      <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+        <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+          <div class="max-w-md mx-auto">
+            <div class="divide-y divide-gray-200">
+              <div
+                class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7"
+              >
+                <h2 class="text-3xl font-extrabold text-center text-gray-900">
+                  Créez votre CV
+                </h2>
+                <p class="text-center text-gray-500">
+                  Remplissez le formulaire et voyez votre CV prendre forme en temps
+                  réel!
+                </p>
+              </div>
+              <div
+                class="pt-6 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7"
+              >
+                <form [formGroup]="cvForm" >
+                  <!-- Informations personnelles -->
+                  <div class="mb-4">
+                    <label
+                      class="block text-gray-700 text-sm font-bold mb-2"
+                      for="nom"
+                    >
+                      Nom
+                    </label>
+                    <input
+                      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      id="nom"
+                      type="text"
+                      formControlName="nom"
+                      placeholder="Votre nom"
+                    />
+                  </div>
+                  <div class="mb-4">
+                    <label
+                      class="block text-gray-700 text-sm font-bold mb-2"
+                      for="prenom"
+                    >
+                      Prénom
+                    </label>
+                    <input
+                      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      id="prenom"
+                      type="text"
+                      formControlName="prenom"
+                      placeholder="Votre prénom"
+                    />
+                  </div>
+                  <div class="mb-4">
+                    <label
+                      class="block text-gray-700 text-sm font-bold mb-2"
+                      for="email"
+                    >
+                      Email
+                    </label>
+                    <input
+                      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      id="email"
+                      type="email"
+                      formControlName="email"
+                      placeholder="votre@email.com"
+                    />
+                  </div>
+                  <div class="mb-4">
+                    <label
+                      class="block text-gray-700 text-sm font-bold mb-2"
+                      for="telephone"
+                    >
+                      Téléphone
+                    </label>
+                    <input
+                      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      id="telephone"
+                      type="tel"
+                      formControlName="telephone"
+                      placeholder="Votre numéro de téléphone"
+                    />
+                  </div>
+    
+                  <!-- Formations -->
+                  <div formArrayName="formations" class="mb-4">
+                    <h3 class="text-xl font-bold mb-2">Formations</h3>
+                    <div
+                      *ngFor="let formation of formations.controls; let i = index"
+                      [formGroupName]="i"
+                      class="mb-2 p-2 bg-gray-100 rounded"
+                    >
+                      <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2"
+                        type="text"
+                        formControlName="diplome"
+                        placeholder="Diplôme"
+                      />
+                      <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2"
+                        type="text"
+                        formControlName="etablissement"
+                        placeholder="Établissement"
+                      />
+                      <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2"
+                        type="number"
+                        formControlName="annee"
+                        placeholder="Année"
+                      />
+                      <button
+                        type="button"
+                        (click)="supprimerFormation(i)"
+                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
+                      >
+                        Supprimer
+                      </button>
+                    </div>
+                    <button
+                      type="button"
+                      (click)="ajouterFormation()"
+                      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    >
+                      Ajouter une formation
+                    </button>
+                  </div>
+    
+                  <!-- Expériences -->
+                  <div formArrayName="experiences" class="mb-4">
+                    <h3 class="text-xl font-bold mb-2">
+                      Expériences professionnelles
+                    </h3>
+                    <div
+                      *ngFor="let experience of experiences.controls; let i = index"
+                      [formGroupName]="i"
+                      class="mb-2 p-2 bg-gray-100 rounded"
+                    >
+                      <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2"
+                        type="text"
+                        formControlName="poste"
+                        placeholder="Poste"
+                      />
+                      <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2"
+                        type="text"
+                        formControlName="entreprise"
+                        placeholder="Entreprise"
+                      />
+                      <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2"
+                        type="date"
+                        formControlName="debut"
+                        placeholder="Date de début"
+                      />
+                      <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2"
+                        type="date"
+                        formControlName="fin"
+                        placeholder="Date de fin"
+                      />
+                      <textarea
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2"
+                        formControlName="description"
+                        placeholder="Description du poste"
+                      ></textarea>
+                      <button
+                        type="button"
+                        (click)="supprimerExperience(i)"
+                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
+                      >
+                        Supprimer
+                      </button>
+                    </div>
+                    <button
+                      type="button"
+                      (click)="ajouterExperience()"
+                      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    >
+                      Ajouter une expérience
+                    </button>
+                  </div>
+    
+                  <!-- Compétences -->
+                  <div formArrayName="competences" class="mb-4">
+                    <h3 class="text-xl font-bold mb-2">Compétences</h3>
+                    <div
+                      *ngFor="let competence of competences.controls; let i = index"
+                      class="flex items-center mb-2"
+                    >
+                      <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        type="text"
+                        [formControlName]="i"
+                        placeholder="Compétence"
+                      />
+                      <button
+                        type="button"
+                        (click)="supprimerCompetence(i)"
+                        class="ml-2 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
+                      >
+                        Supprimer
+                      </button>
+                    </div>
+                    <button
+                      type="button"
+                      (click)="ajouterCompetence()"
+                      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    >
+                      Ajouter une compétence
+                    </button>
+                  </div>
+    
+                  <button (click)=" telechargerPDF()" class="mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                    Télécharger en PDF
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Prévisualisation du CV mise à jour -->
+    <div class="affichage   right-0  p-8 overflow-y-auto ">
+        <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+          <div class="p-8 bg-blue-600 text-white">
+            <h2 class="text-3xl font-bold">{{ cvForm.value.prenom || 'Prénom' }} {{ cvForm.value.nom || 'Nom' }}</h2>
+            <p class="text-xl">{{ cvForm.value.email || 'email@exemple.com' }}</p>
+            <p class="text-xl">{{ cvForm.value.telephone || '+33 1 23 45 67 89' }}</p>
+          </div>
+          <div class="p-8">
+            <h3 class="text-2xl font-bold mb-4">Formations</h3>
+            <ul class="list-disc list-inside mb-6">
+              <li *ngFor="let formation of cvForm.value.formations">
+                {{ formation.diplome || 'Diplôme' }} - {{ formation.etablissement || 'Établissement' }} ({{ formation.annee || 'Année' }})
+              </li>
+              <li *ngIf="cvForm.value.formations.length === 0" class="text-gray-500 italic">
+                Ajoutez vos formations ici...
+              </li>
+            </ul>
+            <h3 class="text-2xl font-bold mb-4">Expériences professionnelles</h3>
+            <ul class="list-none mb-6">
+              <li *ngFor="let experience of cvForm.value.experiences" class="mb-4">
+                <h4 class="font-bold">{{ experience.poste || 'Poste' }} chez {{ experience.entreprise || 'Entreprise' }}</h4>
+                <p class="text-sm text-gray-600">
+                  {{ experience.debut ? (experience.debut | date) : 'Date de début' }} - 
+                  {{ experience.fin ? (experience.fin | date) : 'Date de fin' }}
+                </p>
+                <p class="mt-2">{{ experience.description || 'Description du poste...' }}</p>
+              </li>
+              <li *ngIf="cvForm.value.experiences.length === 0" class="text-gray-500 italic">
+                Ajoutez vos expériences professionnelles ici...
+              </li>
+            </ul>
+            <h3 class="text-2xl font-bold mb-4">Compétences</h3>
+            <div class="flex flex-wrap">
+              <span *ngFor="let competence of cvForm.value.competences" class="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                {{ competence || 'Compétence' }}
+              </span>
+              <span *ngIf="cvForm.value.competences.length === 0" class="text-gray-500 italic">
+                Ajoutez vos compétences ici...
+              </span>
+            </div>
+          </div>
+          <button (click)="telechargerPDF()" class="mt-4  bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+            Télécharger en PDF
+          </button>
+        </div>
+      </div>
+
+</div>
+
+
+<!-- Prévisualisation du CV -->

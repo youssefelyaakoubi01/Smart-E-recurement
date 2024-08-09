@@ -8,6 +8,7 @@ import { VerifyAffComponent } from './verify-aff/verify-aff.component';
 import { ChatLlmComponent } from './chat-llm/chat-llm.component';
 import { SearchOffersComponent } from './search-offers/search-offers.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { CreateCVComponent } from './create-cv/create-cv.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'verifyAff', component: VerifyAffComponent },
   { path: 'chatllm', component: ChatLlmComponent },
   { path: 'search_offers', component: SearchOffersComponent},
+  { path: 'createCV', component: CreateCVComponent},
   { path: '**', component: NotfoundComponent},
   
  
