@@ -1,0 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    height: 100%; /* Utiliser 100vh pour occuper la hauteur complète de l'écran */
+    width: 100%;
+    background-image: url("assets/images/—Pngtree—stack of law books with_5590662.jpg");
+    background-size: cover;
+    background-position: top;
+    background-repeat: non-repeat; /* Empêcher la répétition de l'image */
+}

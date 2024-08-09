@@ -1,0 +1,275 @@
+<div class="body_container_home bg-white">
+  <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-5">
+    Vous pouvez créer votre affaire ici!
+  </h1>
+  <div class="create_container">
+    <div class="partie2" >
+      <div id="printSection" class="printSection">
+        <p dir="rtl" lang="ar">
+          <strong>التاريخ </strong> <span>  </span> {{ divorce_form.value.date }}
+        </p>
+        <p dir="rtl" lang="ar">
+          <strong>المحكمة الإبتدائية</strong> {{ divorce_form.value.cour }}
+        </p>
+        <p dir="rtl" lang="ar">
+          <strong>قسم قضاء الأسرة</strong> {{ divorce_form.value.section }}
+        </p>
+        <p dir="rtl" lang="ar">
+          <strong>الموضوع</strong> {{ divorce_form.value.sujet }}
+        </p>
+        <p dir="rtl" lang="ar">
+          <strong>اسم الزوج:</strong> {{ divorce_form.value.nomMari }} المزداد
+          بتاريخ {{ divorce_form.value.dateNaissanceMari }} الحامل للبطاقة
+          الوطنية رقم {{ divorce_form.value.numCarteMari }}
+        </p>
+        <p dir="rtl" lang="ar">
+          <strong>اسم الزوجة:</strong>
+          {{ divorce_form.value.nomFemme }} المزدادة بتاريخ
+          {{ divorce_form.value.dateNaissanceFemme }} الحاملة للبطاقة الوطنية
+          رقم {{ divorce_form.value.numCarteFemme }}
+        </p>
+        <p dir="rtl" lang="ar">
+          يشرفنا أن نتقدم الى جنابكم الموقر ملتمسين الطلاق بالتراضي فيما بيننا.
+        </p>
+        <p dir="rtl" lang="ar">
+          حيث أننا تزوجنا بموجب عقد زواج رسمي مضمن بقسم التوثيق للمحكمة
+          الإبتدائية {{ divorce_form.value.cour }} سجل ولم ينتج عن هذا الزواج اي
+          حمل أو ولادة. الزواج رقم
+          {{ divorce_form.value.numContratMariage }} تحت عدد
+          {{ divorce_form.value.numEnregistrementMariage }} بتاريخ
+          {{ divorce_form.value.dateMariage }}
+        </p>
+        <p dir="rtl" lang="ar">
+          إن الحياة الزوجية بيننا قد أصبحت تسير في طريق مسدود في الفترة الأخيرة،
+          وعليه فقد تم الاتفاق فيما بيننا على فك هذه الرابطة الزوجية بالتراضي
+          فيما بيننا.
+        </p>
+        <p dir="rtl" lang="ar">
+          ملتمسين من السيد رئيس المحكمة الابتدائية
+          {{ divorce_form.value.nomPresidentCour }} الإذن لنا بإبرام طلاق اتفاقي
+          بناء على ماذكر
+        </p>
+        <br>
+        <br>
+        <p dir="rtl" lang="ar">
+          <strong>توقيع الزوج</strong> {{ divorce_form.value.signatureMari }}
+          <span class="wife"  dir="rtl" lang="ar">
+            <strong>توقيع الزوجة</strong> {{ divorce_form.value.signatureFemme }}
+          </span>
+        </p>
+
+       
+      </div>
+      <br>
+      <br>
+      <br>
+
+      <button (click)="imprimer()" class="button" >طباعة</button>
+     
+    </div>
+    <div class="partie1">
+      <form [formGroup]="divorce_form" (submit)="toSubmit()">
+        
+
+        <div ngClass="precedent {{ classPre }}">
+          <div class="form-control">
+            <label for="date">التاريخ</label>
+            <input
+              type="date"
+              id="date"
+              formControlName="date"
+              placeholder="التاريخ"
+              autocomplete="off"
+            />
+            <i class="icon"></i>
+          </div>
+
+          <div class="form-control">
+            <label for="cour">المحكمة الإبتدائية</label>
+            <input
+              type="text"
+              id="cour"
+              formControlName="cour"
+              placeholder="المحكمة الإبتدائية"
+              autocomplete="off"
+            />
+            <i class="icon"></i>
+          </div>
+
+          <div class="form-control">
+            <label for="section">قسم قضاء الأسرة</label>
+            <input
+              type="text"
+              id="section"
+              formControlName="section"
+              placeholder="قسم قضاء الأسرة"
+              autocomplete="off"
+            />
+            <i class="icon"></i>
+          </div>
+
+          <div class="form-control">
+            <label for="sujet">الموضوع</label>
+            <input
+              type="text"
+              id="sujet"
+              formControlName="sujet"
+              placeholder="طلب الطلاق بالإتفاق"
+              autocomplete="off"
+            />
+            <i class="icon"></i>
+          </div>
+
+          <div class="form-control">
+            <label for="nomMari">اسم الزوج</label>
+            <input
+              type="text"
+              id="nomMari"
+              formControlName="nomMari"
+              placeholder="اسم الزوج"
+              autocomplete="off"
+            />
+            <i class="icon"></i>
+          </div>
+
+          <div class="form-control">
+            <label for="dateNaissanceMari">تاريخ ميلاد الزوج</label>
+            <input
+              type="date"
+              id="dateNaissanceMari"
+              formControlName="dateNaissanceMari"
+              placeholder="تاريخ ميلاد الزوج"
+              autocomplete="off"
+            />
+            <i class="icon"></i>
+          </div>
+
+          <div class="form-control">
+            <label for="numCarteMari">رقم البطاقة الوطنية للزوج</label>
+            <input
+              type="text"
+              id="numCarteMari"
+              formControlName="numCarteMari"
+              placeholder="رقم البطاقة الوطنية للزوج"
+              autocomplete="off"
+            />
+            <i class="icon"></i>
+          </div>
+
+          <div class="form-control">
+            <label for="nomFemme">اسم الزوجة</label>
+            <input
+              type="text"
+              id="nomFemme"
+              formControlName="nomFemme"
+              placeholder="اسم الزوجة"
+              autocomplete="off"
+            />
+            <i class="icon"></i>
+          </div>
+
+          <div class="form-control">
+            <label for="dateNaissanceFemme">تاريخ ميلاد الزوجة</label>
+            <input
+              type="date"
+              id="dateNaissanceFemme"
+              formControlName="dateNaissanceFemme"
+              placeholder="تاريخ ميلاد الزوجة"
+              autocomplete="off"
+            />
+            <i class="icon"></i>
+          </div>
+
+          <div class="form-control">
+            <label for="numCarteFemme">رقم البطاقة الوطنية للزوجة</label>
+            <input
+              type="text"
+              id="numCarteFemme"
+              formControlName="numCarteFemme"
+              placeholder="رقم البطاقة الوطنية للزوجة"
+              autocomplete="off"
+            />
+            <i class="icon"></i>
+          </div>
+          <button (click)="suivant()">Suivant</button>
+        </div>
+
+        <div ngClass="suivant {{ classSuiv }}">
+          <div class="form-control">
+            <label for="numContratMariage">رقم عقد الزواج</label>
+            <input
+              type="text"
+              id="numContratMariage"
+              formControlName="numContratMariage"
+              placeholder="رقم عقد الزواج"
+              autocomplete="off"
+            />
+            <i class="icon"></i>
+          </div>
+
+          <div class="form-control">
+            <label for="dateMariage">تاريخ الزواج</label>
+            <input
+              type="date"
+              id="dateMariage"
+              formControlName="dateMariage"
+              placeholder="تاريخ الزواج"
+              autocomplete="off"
+            />
+            <i class="icon"></i>
+          </div>
+
+          <div class="form-control">
+            <label for="numEnregistrementMariage">رقم تسجيل الزواج</label>
+            <input
+              type="text"
+              id="numEnregistrementMariage"
+              formControlName="numEnregistrementMariage"
+              placeholder="رقم تسجيل الزواج"
+              autocomplete="off"
+            />
+            <i class="icon"></i>
+          </div>
+
+          <div class="form-control">
+            <label for="nomPresidentCour">اسم رئيس المحكمة الابتدائية</label>
+            <input
+              type="text"
+              id="nomPresidentCour"
+              formControlName="nomPresidentCour"
+              placeholder="اسم رئيس المحكمة الابتدائية"
+              autocomplete="off"
+            />
+            <i class="icon"></i>
+          </div>
+
+          <div class="form-control">
+            <label for="signatureMari">توقيع الزوج</label>
+            <input
+              type="text"
+              id="signatureMari"
+              formControlName="signatureMari"
+              placeholder="توقيع الزوج"
+              autocomplete="off"
+            />
+            <i class="icon"></i>
+          </div>
+
+          <div class="form-control">
+            <label for="signatureFemme">توقيع الزوجة</label>
+            <input
+              type="text"
+              id="signatureFemme"
+              formControlName="signatureFemme"
+              placeholder="توقيع الزوجة"
+              autocomplete="off"
+            />
+            <i class="icon"></i>
+          </div>
+
+          <button (click)="precedent()">Précédent</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

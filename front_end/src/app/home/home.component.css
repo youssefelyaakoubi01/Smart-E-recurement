@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.body_container_home {
+    width: 85%;
+    border-radius: 60px;
+   
+    margin: 40px 100px 100px;
+    padding: 40px;
+
+}
+
+.image_container{
+    margin-top: 20px;
+}
+.smart_img {
+    
+    border-radius: 10px;
+}
+
+.image_jadge {
+    margin-bottom: 100px;
+}

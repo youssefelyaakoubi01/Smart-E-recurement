@@ -1,0 +1,80 @@
+<div class="resultat_style">
+    <div class="alert-succes" *ngIf="message != null" #resultat>
+        <span class="span"> {{ message }}</span>
+    </div>   
+</div>
+<div class="body">
+    <div class="container">
+        <img src="assets/images/—Pngtree—stack of law books with_5590662.jpg">
+        <form [formGroup]="divorce_form" (submit)="toSubmit()">
+            <h2>Vérifier vos affaires de divorce</h2>
+
+            <div class="form-control">
+                <label for="name">Nom et Prénom de demandeur</label>
+                <input type="text" id="name" formControlName="demandeur" placeholder="Nom et Prénom de demandeur" autocomplete="off">
+                <i class="icon"></i>
+            </div>
+            <div class="form-control">
+                <label for="name">Nom et prénom de l'époux</label>
+                <input type="text" id="name"  formControlName="epoux" placeholder="Nom et prénom de l'époux" autocomplete="off">
+                <i class="icon"></i>
+            </div>
+    
+            <div class="form-control">
+                <label for="date">La date de mariage </label>
+                <input type="date" id="date" formControlName="dateMariage" placeholder="Entrer la date de mariage" autocomplete="off">
+                <i class="icon"></i>
+            </div>
+            <div class="form-control">
+                <label for="date">la date de demande de divorce</label>
+                <input type="date" id="date" formControlName="dateDemandeDivorce" placeholder="Entrer la date de demande de divorce" autocomplete="off">
+                <i class="icon"></i>
+            </div>
+    
+            <div class="form-control">
+                <span for="le nombre d'enfants">Avez-vous des enfants?  </span>
+
+                <select  formControlName="status_enfant" >
+                    <option value="true" >Oui</option>
+                    <option value="false"  >Non</option>
+                </select>
+                <i class="icon"></i>
+            </div>
+            <div class="form-control" *ngIf="this.divorce_form.value.status_enfant == 'true'">
+                <label for="le nombre d'enfants" >le nombre d'enfants</label>
+                <input type="number" id="le nombre d'enfants" formControlName="nombre_enfants" placeholder="le nombre d'enfants" autocomplete="off">
+                <i class="icon"></i>
+            </div>
+            
+            <div class="form-control">
+                <label for="name">Salaire mensuel </label>
+                <input type="text" id="name" formControlName="salaire_mensuel" placeholder="Salaire mensuel de demandeur DHS" >
+                <i class="icon"></i>
+            </div>
+            
+
+            <div class="form-control">
+                <label for="typde_divorce">type de_divorce</label>
+                <select formControlName="typede_divorce" >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+                <i class="icon"></i>
+            </div>
+            
+
+            <div class="form-control">
+                <label for="la cause de divorce">la cause de divorce</label>
+                <textarea id="la cause de divorce" placeholder="Enterer la cause de divorce" formControlName="causeDivorce"></textarea>
+                <i class="icon"></i>
+            </div>
+           
+            <span class="loader" *ngIf="click_btn" ></span>
+            <button type="submit" class="btn-submit" (click)="changeStatus()" [disabled]="!divorce_form.valid" id="resultat" >Vérifier mon affaire</button>
+    
+        </form>
+       
+    </div>
+    
+
+</div>

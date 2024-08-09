@@ -1,0 +1,98 @@
+
+
+<div class="body">
+  <div ngClass="{{alertClasse}}" *ngIf="message != null">
+    <span class="span"> {{ message }}</span>
+  </div>
+  <div class="login_signup">
+    <div ngClass="container {{ ClassStyle }}">
+      <div class="form-container sign-up">
+        <form [formGroup]="form_signup" (ngSubmit)="Signup(form_signup)">
+          <h1>Créer un compte</h1>
+          <input
+            formControlName="lastName"
+            type="text"
+            placeholder="Nom"
+            required="Entrez votre nom!"
+          />
+          <input
+            formControlName="firstName"
+            type="text"
+            placeholder="Prenom"
+            required="Entrez votre prenom!"
+          />
+          <input
+            formControlName="username"
+            type="email"
+            placeholder="Adresse e-mail"
+            required="Entrez votre email!"
+          />
+          <input
+            formControlName="password"
+            type="password"
+            placeholder="Mot de passe"
+            required="Entrez votre mot de passe!"
+          />
+          <button
+            
+            type="submit"
+            class="btn-submit"
+            
+            [disabled]="!form_signup.valid"
+          >
+            S'inscrire
+          </button>
+        </form>
+      </div>
+      <div class="form-container sign-in">
+        
+        <form [formGroup]="form_Login" (submit)="logIn(form_Login)">
+          <div class="img_container">
+            <img class="img_form" src="assets/images/AdobeStock_512419067_Preview.jpeg" alt="">
+          </div>
+          <h1>Se connecter</h1>
+          <span>Utilisez votre adresse e-mail et votre mot de passe</span>
+          <input
+            formControlName="username"
+            type="email"
+            placeholder="Adresse e-mail"
+          />
+          <input
+            formControlName="password"
+            type="password"
+            placeholder="Mot de passe"
+          />
+          <button
+            [disabled]="!form_Login.valid"
+            type="submit"
+            class="btn-submit"
+            
+          >
+            Se connecter
+          </button>
+        </form>
+      </div>
+      <div class="toggle-container">
+        <div class="toggle">
+          <div class="toggle-panel toggle-left">
+            <h1>Bienvenue!</h1>
+            <p>
+              Entrez vos informations personnelles pour utiliser toutes les
+              fonctionnalités du site
+            </p>
+            <button class="hidden" (click)="changeClasse(1)">Se connecter</button>
+          </div>
+          <div class="toggle-panel toggle-right">
+            <h1>Bonjour, ami(e)!</h1>
+            <p>
+              Inscrivez-vous avec vos informations personnelles pour utiliser
+              toutes les fonctionnalités du site
+            </p>
+            <button class="hidden" (click)="changeClasse(2)">S'inscrire</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

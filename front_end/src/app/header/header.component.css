@@ -1,0 +1,43 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.nav_container{
+    margin-left: 10%;
+    margin-top: 40px;
+}
+.navbar {
+    border-radius: 50px;
+    background-color: #0f4c88;
+    width: 90%;
+    
+}
+.navbar a {
+    color: white;
+    font-size: medium;
+   
+}
+.img_container {
+    text-align: left;
+    height: 10px;
+    width: 50px;
+
+}
+.img_header {
+    height: 40px;
+    width: 50px;
+    border-radius: 60px;
+
+}
+
+.menu_profile {
+    justify-content: left;
+    
+    display: flex;
+    
+}
+a:active{
+    background-color: black;
+    color: white;
+}

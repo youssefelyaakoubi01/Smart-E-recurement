@@ -1,0 +1,338 @@
+<div class="container_chat">
+  <div
+    class="h-screen overflow-hidden flex items-center justify-center"
+    style="background: #edf2f7; border-radius: 40px"
+  >
+    <div class="flex-1 p:2 sm:p-6 justify-between flex flex-col h-screen">
+      <div
+        class="flex sm:items-center justify-between py-3 border-b-2 border-gray-200"
+      >
+        <div class="relative flex items-center space-x-4">
+          <div class="relative">
+            <span class="absolute text-green-500 right-0 bottom-0">
+              <svg width="20" height="20">
+                <circle cx="8" cy="8" r="8" fill="currentColor"></circle>
+              </svg>
+            </span>
+            <img
+              src="assets/images/judge.png"
+              alt=""
+              class="w-10 sm:w-16 h-10 sm:h-16 rounded-full"
+            />
+          </div>
+          <div class="flex flex-col leading-tight">
+            <div class="text-2xl mt-1 flex items-center">
+              <span class="text-gray-700 mr-3">M. Lawyer</span>
+            </div>
+            <span class="text-lg text-gray-600">Lawyer : ) </span>
+          </div>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button
+            type="button"
+            class="inline-flex items-center justify-center rounded-lg border h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              class="h-6 w-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              ></path>
+            </svg>
+          </button>
+          <button
+            type="button"
+            class="inline-flex items-center justify-center rounded-lg border h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              class="h-6 w-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              ></path>
+            </svg>
+          </button>
+          <button
+            type="button"
+            class="inline-flex items-center justify-center rounded-lg border h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              class="h-6 w-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div
+        id="messages"
+        class="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch"
+      >
+        <div class="chat-message" *ngFor="let message of messages">
+          <div class="flex items-end justify-end">
+            <div
+              class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end"
+            >
+              <div>
+                <span
+                  class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white"
+                  >{{ message.question }}
+                </span>
+              </div>
+            </div>
+            <img
+              src="assets/images/user_icon.jpg"
+              alt="My profile"
+              class="w-6 h-6 rounded-full order-2"
+            />
+          </div>
+          <div class="flex items-end">
+            <div
+              class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start"
+            >
+              <div>
+                <span
+                  class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600"
+                >
+                  {{ message.answer }}
+                </span>
+              </div>
+            </div>
+            <img
+              src="assets/images/judge.png"
+              alt="My profile"
+              class="w-6 h-6 rounded-full order-1"
+            />
+          </div>
+        </div>
+
+        <div class="chat-message" *ngIf="chat_form.value.question">
+          <div class="flex items-end justify-end">
+            <div
+              class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end"
+            >
+              <div>
+                <span
+                  class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white"
+                  >{{ chat_form.value.question }}</span
+                >
+              </div>
+            </div>
+            <img
+              src="assets/images/user_icon.jpg"
+              alt="My profile"
+              class="w-6 h-6 rounded-full order-2"
+            />
+          </div>
+        </div>
+        <div class="chat-message" *ngIf="questionStatus">
+          <div class="flex items-end">
+            <div
+              class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start"
+            >
+              <div>
+                <span
+                  class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600"
+                >
+                  <span class="loader"></span>
+                </span>
+              </div>
+            </div>
+            <img
+              src="assets/images/judge.png"
+              class="w-6 h-6 rounded-full order-1"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="border-t-2 border-gray-200 px-4 pt-4 mb-2 sm:mb-0">
+        <form [formGroup]="chat_form" (ngSubmit)="ask_chatbot()">
+          <div class="relative flex">
+            <span class="absolute inset-y-0 flex items-center">
+              <button
+                type="button"
+                class="inline-flex items-center justify-center rounded-full h-12 w-12 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  class="h-6 w-6 text-gray-600"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
+                  ></path>
+                </svg>
+              </button>
+            </span>
+            <textarea
+              type="text"
+              formControlName="question"
+              placeholder="Envoyer un message!"
+              class="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-12 bg-gray-200 rounded-md py-3"
+            > </textarea>
+            <div class=" right-0 items-center inset-y-0 hidden sm:flex">
+              <select
+              formControlName="language"
+              class="rounded-full h-10 w-11 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none"
+            >
+            
+              <option value="fr">FR</option>
+              <option value="ar">Ar</option>
+            </select>
+            <span>Langue</span>
+
+              
+              <select
+                formControlName="llm_type"
+                class="rounded-full h-10 w-11 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none"
+              >
+              
+                <option value="1">Notre Modèle</option>
+                <option value="2">Autre Modèle</option>
+              </select>
+              <span>Choisir un Modèle</span>
+            
+
+              <button
+                type="button"
+                class="inline-flex items-center justify-center rounded-full h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  class="h-6 w-6 text-gray-600"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
+                  ></path>
+                </svg>
+              </button>
+              <button
+                type="button"
+                class="inline-flex items-center justify-center rounded-full h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  class="h-6 w-6 text-gray-600"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
+                  ></path>
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
+                  ></path>
+                </svg>
+              </button>
+              <button
+                type="button"
+                class="inline-flex items-center justify-center rounded-full h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  class="h-6 w-6 text-gray-600"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+              </button>
+              <button
+                type="button"
+                class="inline-flex items-center justify-center rounded-full h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none"
+                (click)="clearConversation()"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  transform="rotate(0)matrix(1, 0, 0, 1, 0, 0)"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <path
+                      d="M4 6H20M16 6L15.7294 5.18807C15.4671 4.40125 15.3359 4.00784 15.0927 3.71698C14.8779 3.46013 14.6021 3.26132 14.2905 3.13878C13.9376 3 13.523 3 12.6936 3H11.3064C10.477 3 10.0624 3 9.70951 3.13878C9.39792 3.26132 9.12208 3.46013 8.90729 3.71698C8.66405 4.00784 8.53292 4.40125 8.27064 5.18807L8 6M18 6V16.2C18 17.8802 18 18.7202 17.673 19.362C17.3854 19.9265 16.9265 20.3854 16.362 20.673C15.7202 21 14.8802 21 13.2 21H10.8C9.11984 21 8.27976 21 7.63803 20.673C7.07354 20.3854 6.6146 19.9265 6.32698 19.362C6 18.7202 6 17.8802 6 16.2V6M14 10V17M10 10V17"
+                      stroke="#000000"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </g>
+                </svg>
+              </button>
+              <button
+                [disabled]="!chat_form.valid"
+                type="submit"
+                class="inline-flex items-center justify-center rounded-lg px-4 py-3 transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-400 focus:outline-none"
+              >
+                <span class="font-bold">Consulter</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  class="h-6 w-6 ml-2 transform rotate-90"
+                >
+                  <path
+                    d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
