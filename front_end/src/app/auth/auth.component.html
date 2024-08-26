@@ -1,7 +1,5 @@
-
-
 <div class="body">
-  <div ngClass="{{alertClasse}}" *ngIf="message != null">
+  <div ngClass="{{ alertClasse }}" *ngIf="message != null">
     <span class="span"> {{ message }}</span>
   </div>
   <div class="login_signup">
@@ -15,29 +13,141 @@
             placeholder="Nom"
             required="Entrez votre nom!"
           />
+          <div
+            *ngIf="
+              form_signup.get('lastName')?.hasError('required') &&
+              form_signup.get('lastName')?.touched
+            "
+          >
+            <div class="error-champ">
+              <span>Ce champs est obligatoire! </span>
+            </div>
+          </div>
+          <!-- Validation de champs lastName minlenght -->
+          <div
+            *ngIf="
+              form_signup.get('lastName')?.hasError('minlength') &&
+              form_signup.get('lastName')?.touched
+            "
+          >
+            <div class="error-champ">
+              <span>Le nom doit contenir plus de 2 caractères! </span>
+            </div>
+          </div>
+          <!-- Validation de champs lastName maxlenght -->
+          <div
+            *ngIf="
+              form_signup.get('lastName')?.hasError('maxlength') &&
+              form_signup.get('lastName')?.touched
+            "
+          >
+            <div class="error-champ">
+              <span>Le nom doit contenir moins de 15 caractères! </span>
+            </div>
+          </div>
+
           <input
             formControlName="firstName"
             type="text"
             placeholder="Prenom"
             required="Entrez votre prenom!"
           />
+
+          <div
+            *ngIf="
+              form_signup.get('firstName')?.hasError('required') &&
+              form_signup.get('firstName')?.touched
+            "
+          >
+            <div class="error-champ">
+              <span>Ce champs est obligatoire! </span>
+            </div>
+          </div>
+          <!-- Validation de champs firstName minlenght -->
+          <div
+            *ngIf="
+              form_signup.get('firstName')?.hasError('minlength') &&
+              form_signup.get('firstName')?.touched
+            "
+          >
+            <div class="error-champ">
+              <span>Le prénom doit contenir plus de 2 caractères! </span>
+            </div>
+          </div>
+          <!-- Validation de champs firstName maxlenght -->
+          <div
+            *ngIf="
+              form_signup.get('firstName')?.hasError('maxlength') &&
+              form_signup.get('firstName')?.touched
+            "
+          >
+            <div class="error-champ">
+              <span>Le prénom doit contenir moins de 15 caractères! </span>
+            </div>
+          </div>
+
           <input
             formControlName="username"
             type="email"
             placeholder="Adresse e-mail"
             required="Entrez votre email!"
           />
+
+          <div
+          *ngIf="
+            form_signup.get('username')?.hasError('required') &&
+            form_signup.get('username')?.touched
+          "
+        >
+          <div class="error-champ">
+            <span>Ce champs est obligatoire! </span>
+          </div>
+        </div>
+        <!-- Validation de champs firstName minlenght -->
+        <div
+          *ngIf="
+            form_signup.get('username')?.hasError('email') &&
+            form_signup.get('username')?.touched
+          "
+        >
+          <div class="error-champ">
+            <span>Email invalide! </span>
+          </div>
+        </div>
+        <!-- Validation de champs firstName maxlenght -->
+    
+
           <input
             formControlName="password"
             type="password"
             placeholder="Mot de passe"
             required="Entrez votre mot de passe!"
           />
+          <div
+          *ngIf="
+            form_signup.get('password')?.hasError('required') &&
+            form_signup.get('password')?.touched
+          "
+        >
+          <div class="error-champ">
+            <span>Ce champs est obligatoire! </span>
+          </div>
+        </div>
+        
+        <div
+        *ngIf="
+          form_signup.get('password')?.hasError('minlength') &&
+          form_signup.get('password')?.touched
+        "
+      >
+        <div class="error-champ">
+          <span>Le mot de passe  doit contenir 5 caractères au minimum! </span>
+        </div>
+      </div>
+
           <button
-            
             type="submit"
             class="btn-submit"
-            
             [disabled]="!form_signup.valid"
           >
             S'inscrire
@@ -45,10 +155,13 @@
         </form>
       </div>
       <div class="form-container sign-in">
-        
         <form [formGroup]="form_Login" (submit)="logIn(form_Login)">
           <div class="img_container">
-            <img class="img_form" src="assets/images/AdobeStock_512419067_Preview.jpeg" alt="">
+            <img
+              class="img_form"
+              src="assets/images/AdobeStock_512419067_Preview.jpeg"
+              alt=""
+            />
           </div>
           <h1>Se connecter</h1>
           <span>Utilisez votre adresse e-mail et votre mot de passe</span>
@@ -57,16 +170,45 @@
             type="email"
             placeholder="Adresse e-mail"
           />
+          <div
+          *ngIf="
+            form_Login.get('username')?.hasError('required') &&
+            form_Login.get('username')?.touched
+          "
+        >
+          <div class="error-champ">
+            <span>Ce champs est obligatoire!</span> 
+          </div>
+        </div>
+        <div
+        *ngIf="
+          form_Login.get('username')?.hasError('email') &&
+          form_Login.get('username')?.touched
+        "
+      >
+        <div class="error-champ">
+          <span>Username invalide!</span> 
+        </div>
+      </div>
           <input
             formControlName="password"
             type="password"
             placeholder="Mot de passe"
           />
+          <div
+          *ngIf="
+            form_Login.get('password')?.hasError('required') &&
+            form_Login.get('password')?.touched
+          "
+        >
+          <div class="error-champ">
+            <span>Ce champs est obligatoire!</span> 
+          </div>
+        </div>
           <button
             [disabled]="!form_Login.valid"
             type="submit"
             class="btn-submit"
-            
           >
             Se connecter
           </button>
@@ -80,7 +222,9 @@
               Entrez vos informations personnelles pour utiliser toutes les
               fonctionnalités du site
             </p>
-            <button class="hidden" (click)="changeClasse(1)">Se connecter</button>
+            <button class="hidden" (click)="changeClasse(1)">
+              Se connecter
+            </button>
           </div>
           <div class="toggle-panel toggle-right">
             <h1>Bonjour, ami(e)!</h1>
@@ -95,4 +239,7 @@
     </div>
   </div>
 </div>
+
+
+
 

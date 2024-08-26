@@ -107,7 +107,7 @@
 </div>
 
 <div *ngIf="offres">
-  <div class="title-list" >
+  <div class="title-list">
     <h1 class="title">Les offres trouvées:</h1>
     <hr />
   </div>
@@ -120,7 +120,7 @@
       <a>
         <img
           class="rounded-t-lg img-offre"
-          src="https://d1rdz15x9x7c4f.cloudfront.net/assets/payload-images/hire-python-developers.png"
+          src="assets/hiring-and-recruitment-concept-people-searching-candidate-for-a-new-employee-human-resource-recruitment-process-illustration-vector.jpg"
           alt=""
         />
       </a>
@@ -153,6 +153,11 @@
             <span *ngIf="!lireplus">plus <strong>↓</strong></span>
           </button>
         </a>
+        <div class="bg-blue-700 bottom-0 hover:bg-green-700 text-white items-center text-center rounded-lg h-full  w-full rounded-log  mt-3 ">
+          <button (click)="postuler(offre)">
+            postuler
+          </button>
+        </div>
       </div>
     </div>
   </div>

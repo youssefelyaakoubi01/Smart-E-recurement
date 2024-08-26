@@ -5,7 +5,8 @@ import jsPDF from 'jspdf';
 @Component({
   selector: 'app-create-cv',
   templateUrl: './create-cv.component.html',
-  styleUrls: ['./create-cv.component.css']
+  styleUrls: ['./create-cv.component.css'],
+ 
 })
 export class CreateCVComponent {
   cvForm!: FormGroup;

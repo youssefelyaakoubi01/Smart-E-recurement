@@ -32,7 +32,7 @@ export class AuthService {
     form.reset();
   }
 
-  ifAuthantcate() {
+  ifAuthantcate():Boolean {
     let userString = localStorage.getItem('userItem');
    
     if (userString) {
@@ -47,8 +47,10 @@ export class AuthService {
      
      
         this.status = true
+        return true;
     }else {
       this.status= false;
+      return false;
     }
     
   }

@@ -1,3 +1,5 @@
+
+
 .btn-submit:disabled {
   background-color: #efe8e8 !important;
   color: #333 ! important;
@@ -6,6 +8,7 @@
 
   
   *{
+   
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -463,4 +466,7 @@
 
 .span {
   color: white;
+}
+.error-champ>span{
+  color: red;
 }

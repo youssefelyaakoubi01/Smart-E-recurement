@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Conversation } from '../models/message';
 
 @Injectable({
   providedIn: 'root'
@@ -15,15 +16,17 @@ export class LlmService {
     );
   }
 
-  chatllm(divorce_situation: string ): Observable<string> {
-    return this.http.get<string>(
-      `http://localhost:8000/ask_llm/${divorce_situation}`
+  // 
+  chatllm(converstation: Conversation ): Observable<string> {
+    return this.http.post<string>(
+      'http://localhost:8000/ask_llm/',converstation
     );
   }
 
-  chatllm_ar(divorce_situation: string ): Observable<string> {
+
+  Consultation(consultation_request: string ): Observable<string> {
     return this.http.get<string>(
-      `http://127.0.0.1:8000/ask-smart-judge/chatbot_ar/${divorce_situation}`
+      `http://127.0.0.1:8000/consultation_rag/${consultation_request}`
     );
   }
 

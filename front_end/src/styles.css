@@ -2,8 +2,9 @@
 body {
     height: 100%; /* Utiliser 100vh pour occuper la hauteur complète de l'écran */
     width: 100%;
-    background-image: url("assets/images/—Pngtree—stack of law books with_5590662.jpg");
+    background-image: url("src\assets\back_ground.jpg");
+    background-color: rgba(0, 0, 0, 0.438);
     background-size: cover;
-    background-position: top;
+
     background-repeat: non-repeat; /* Empêcher la répétition de l'image */
 }

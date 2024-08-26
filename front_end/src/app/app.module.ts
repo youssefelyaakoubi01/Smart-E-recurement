@@ -10,13 +10,13 @@ import { HeaderComponent } from './header/header.component';
 import { AuthService } from './services/auth.service';
 import { RouterOutlet } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { AffaireComponent } from './affaire/affaire.component';
 import { VerifyAffComponent } from './verify-aff/verify-aff.component';
 import { ChatLlmComponent } from './chat-llm/chat-llm.component';
 import { SearchOffersComponent } from './search-offers/search-offers.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { OffresService } from './services/offres.service';
 import { CreateCVComponent } from './create-cv/create-cv.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,6 @@ import { CreateCVComponent } from './create-cv/create-cv.component';
     AuthComponent,
     HeaderComponent,
     HomeComponent,
-    AffaireComponent,
     VerifyAffComponent,
     ChatLlmComponent,
     SearchOffersComponent,
@@ -36,7 +35,8 @@ import { CreateCVComponent } from './create-cv/create-cv.component';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterOutlet
+    RouterOutlet,
+    CommonModule
 
   ],
   providers: [

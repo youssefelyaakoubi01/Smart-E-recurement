@@ -3,6 +3,7 @@ const { fontFamily } = require('tailwindcss/defaultTheme')
 module.exports = {
   content: [
     "./src/**/*.{html,ts}",
+    
    
   ],
   theme: {
@@ -17,7 +18,7 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/aspect-ratio'),
-    require('flowbite/plugin') // add this line
+    
   ],
 }
 

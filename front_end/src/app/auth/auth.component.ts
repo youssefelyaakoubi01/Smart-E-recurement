@@ -47,8 +47,8 @@ export class AuthComponent {
     });
 
     this.form_Login = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
+      username: ['', [Validators.required, Validators.email]],
+      password: ['',[ Validators.required]],
     });
   }
 

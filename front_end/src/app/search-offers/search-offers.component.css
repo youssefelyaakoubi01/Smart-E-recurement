@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+@import url("https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css");
 
 article {
     
@@ -63,5 +62,9 @@ button:disabled {
 } 
 
 
-
+.btn_postuler{
+    background-color: blue;
+    color: white;
+    border-radius: 20px;
+}
 

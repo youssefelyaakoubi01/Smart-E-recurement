@@ -8,9 +8,33 @@ import * as pdfjsLib from 'pdfjs-dist';
   styleUrls: ['./search-offers.component.css']
 })
 export class SearchOffersComponent implements OnInit {
-  offres!:Offre[];
+
+  style:any="hidden"
+  offres:Offre[]=[{
+    description:"test test test ",
+    categorie:"test test test "
+  },{
+    description:"test test test ",
+    categorie:"test test test "
+  },
+  {
+    description:"test test test ",
+    categorie:"test test test "
+  },
+  {
+    description:"test test test ",
+    categorie:"test test test "
+  },
+  {
+    description:"test test test ",
+    categorie:"test test test "
+  },
+
+];
   lireplus!:boolean;
   btn_click!:boolean;
+  offreChoisi!:Offre;
+  statusCommande:boolean = false;
 
 
   public file: File | null = null;
@@ -18,9 +42,10 @@ export class SearchOffersComponent implements OnInit {
    
   }
   ngOnInit() {
-     this.offres= this.offresServices.offres;
      this.lireplus= false;
      this.btn_click= false;
+     
+
      
 
   }
@@ -36,7 +61,16 @@ export class SearchOffersComponent implements OnInit {
       formData.append('file', this.file, this.file.name);
       this.offresServices.searchOffers(formData).subscribe(
         (resultat)=>{
-          this.offres = resultat
+          if(resultat){
+            this.offres = [];
+            for( let offre of resultat){
+              this.offres.push(offre)
+            }
+            console.log(this.offres)
+
+          }
+
+          
         },
         (err)=>{
           console.error(err)
@@ -47,5 +81,17 @@ export class SearchOffersComponent implements OnInit {
   }
 }
   
+postuler(offre: any) {
+  this.offreChoisi  = offre;
+  this.style= "block"
   
+  
+}
+startCount() {
+  this.statusCommande = false;
+  setTimeout(() => {
+    this.statusCommande = true;
+  }, 3000);
+  }
+
 }

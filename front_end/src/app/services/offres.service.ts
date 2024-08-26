@@ -13,4 +13,12 @@ export class OffresService {
   searchOffers(cv: FormData): Observable<any> {
     return this.http.post('http://localhost:8000/search_offers', cv);
   }
+ 
+  analyseCVForme(cv: FormData): Observable<any>{
+    return this.http.post('http://localhost:8000/analyse_cv_forme', cv);
+  }
+  analyseCVcareer(cv: FormData): Observable<any>{
+    return this.http.post('http://localhost:8000/analyse_cv_carriere', cv);
+  }
+
 }

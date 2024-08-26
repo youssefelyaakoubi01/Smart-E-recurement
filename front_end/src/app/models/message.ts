@@ -1,4 +1,8 @@
 export interface Message {
     question: string,
-    answer:string
+    answer:any
+}
+
+export interface Conversation {
+    messages: Message[]
 }
