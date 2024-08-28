@@ -8,3 +8,7 @@ body {
 
     background-repeat: non-repeat; /* Empêcher la répétition de l'image */
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

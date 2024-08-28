@@ -1,4 +1,5 @@
 from pydantic import BaseModel,EmailStr
+from typing import List, Any
 
 class UserSignup(BaseModel):
     firstName: str 
@@ -13,3 +14,8 @@ class UserLogin(BaseModel):
 class Offre(BaseModel):
     categorie:str
     description: str
+class Message(BaseModel):
+    question: str
+    answer: Any
+class Conversation(BaseModel):
+    messages: List[Message]

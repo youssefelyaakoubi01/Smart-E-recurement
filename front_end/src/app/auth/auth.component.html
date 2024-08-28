@@ -1,4 +1,4 @@
-<div class="body">
+<div class="body-container mt-6">
   <div ngClass="{{ alertClasse }}" *ngIf="message != null">
     <span class="span"> {{ message }}</span>
   </div>
@@ -222,7 +222,7 @@
               Entrez vos informations personnelles pour utiliser toutes les
               fonctionnalités du site
             </p>
-            <button class="hidden" (click)="changeClasse(1)">
+            <button class="" (click)="changeClasse(1)">
               Se connecter
             </button>
           </div>
@@ -232,7 +232,7 @@
               Inscrivez-vous avec vos informations personnelles pour utiliser
               toutes les fonctionnalités du site
             </p>
-            <button class="hidden" (click)="changeClasse(2)">S'inscrire</button>
+            <button class="" (click)="changeClasse(2)">S'inscrire</button>
           </div>
         </div>
       </div>

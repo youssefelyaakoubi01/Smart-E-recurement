@@ -27,7 +27,7 @@
     <button
       type="submit"
       class="text-white mb-5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-      [disabled]="file == null"
+      [disabled]="file == null || (btn_click && offres.length == 0)"
       (click)="onUpload()"
     >
       Chercher
@@ -35,7 +35,7 @@
   </div>
 </article>
 
-<div class="resultat" *ngIf="file && btn_click && !offres">
+<div class="resultat" *ngIf="file && btn_click && offres.length == 0">
   <ul
     class="max-w-md mt-3 ml-3 mb-3 space-y-2 text-black list-inside dark:text-gray-400"
   >
@@ -106,12 +106,85 @@
   </ul>
 </div>
 
-<div *ngIf="offres">
+<div *ngIf="offres.length > 0">
+  <!-- Model  -->
+
   <div class="title-list">
     <h1 class="title">Les offres trouvées:</h1>
     <hr />
   </div>
   <hr />
+
+  <div
+    *ngIf="statusCommande"
+    id="sticky-banner"
+    tabindex="-1"
+    class="fixed top-0 start-0 z-50 justify-between w-full p-4 border-b border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-600"
+  >
+    <div class="flex">
+      <div class="flex items-center mx-auto">
+        <p
+          class="flex items-center text-sm font-normal text-gray-500 dark:text-gray-400"
+        >
+          <span
+            class="inline-flex p-1 me-3 bg-gray-200 rounded-full dark:bg-gray-600 w-6 h-6 items-center justify-center flex-shrink-0"
+          >
+            <svg
+              class="w-3 h-3 text-gray-500 dark:text-gray-400"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 18 19"
+            >
+              <path
+                d="M15 1.943v12.114a1 1 0 0 1-1.581.814L8 11V5l5.419-3.871A1 1 0 0 1 15 1.943ZM7 4H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2v5a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2V4ZM4 17v-5h1v5H4ZM16 5.183v5.634a2.984 2.984 0 0 0 0-5.634Z"
+              />
+            </svg>
+            <span class="sr-only">Postulation.....</span>
+          </span>
+          <span
+            >Postulation
+            <a
+              class="inline font-medium text-blue-600 underline dark:text-blue-500 underline-offset-2 decoration-600 dark:decoration-500 decoration-solid hover:no-underline"
+              >Réussite</a
+            ></span
+          >
+        </p>
+      </div>
+      <div class="flex items-center">
+        <button
+          (click)="changeStatus()"
+          data-dismiss-target="#sticky-banner"
+          type="button"
+          class="flex-shrink-0 inline-flex justify-center w-7 h-7 items-center text-gray-400 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 dark:hover:bg-gray-600 dark:hover:text-white"
+        >
+          <svg
+            class="w-3 h-3"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 14 14"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+            />
+          </svg>
+          <span class="sr-only">Close banner</span>
+        </button>
+      </div>
+    </div>
+    <div class="mt-2 w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+      <div
+        class="bg-purple-600 h-2.5 rounded-full dark:bg-purple-500"
+        [ngStyle]="{ width: pourcentage + '%' }"
+      ></div>
+    </div>
+  </div>
+
   <div class="list grid grid-cols-4 gap-4 mt-4">
     <div
       *ngFor="let offre of offres"
@@ -153,12 +226,93 @@
             <span *ngIf="!lireplus">plus <strong>↓</strong></span>
           </button>
         </a>
-        <div class="bg-blue-700 bottom-0 hover:bg-green-700 text-white items-center text-center rounded-lg h-full  w-full rounded-log  mt-3 ">
-          <button (click)="postuler(offre)">
-            postuler
-          </button>
+        <div
+          class="bg-blue-700 bottom-0 hover:bg-green-700 text-white items-center text-center rounded-lg h-full w-full rounded-log mt-3"
+        >
+          <button type="button" (click)="postuler(offre)">postuler</button>
+        </div>
+        <!-- Modal -->
+        <div
+          id="large-modal"
+          tabindex="-1"
+          class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
+        >
+          <div class="relative w-full max-w-4xl max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+              <!-- Modal header -->
+              <div
+                class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600"
+              >
+                <h3 class="text-xl font-medium text-gray-900 dark:text-white">
+                  Vous allez postuler l'offre de cette catégorie:
+                  <span class="text-red-500">{{ offreChoisi.categorie }}</span>
+                </h3>
+                <button
+                  type="button"
+                  (click)="hideModal()"
+                  class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                  data-modal-hide="large-modal"
+                >
+                  <svg
+                    class="w-3 h-3"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 14 14"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                    />
+                  </svg>
+                  <span class="sr-only">Close modal</span>
+                </button>
+              </div>
+              <!-- Modal body -->
+              <div class="p-4 md:p-5 space-y-4">
+                <p
+                  class="text-base leading-relaxed text-gray-500 dark:text-gray-400"
+                >
+                  Description d'offre:
+                </p>
+                <p
+                  class="text-base leading-relaxed text-gray-500 dark:text-gray-400"
+                >
+                  {{ offreChoisi.description }}
+                </p>
+              </div>
+              <!-- Modal footer -->
+              <div
+                class="flex items-center p-4 md:p-5 space-x-3 rtl:space-x-reverse border-t border-gray-200 rounded-b dark:border-gray-600"
+              >
+                <button
+                  data-modal-hide="large-modal"
+                  type="button"
+                  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  (click)="startCount()"
+                  (click)="hideModal()"
+                >
+                  Posulter
+                </button>
+                <button
+                  (click)="hideModal()"
+                  data-modal-hide="large-modal"
+                  type="button"
+                  class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                >
+                  Annuler
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Large Modal -->

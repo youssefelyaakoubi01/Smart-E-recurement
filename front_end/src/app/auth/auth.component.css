@@ -14,8 +14,9 @@
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;}
 
-.body{
+.body-container{
 
+  margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -225,7 +226,7 @@
   font-family: 'Montserrat', sans-serif;
 }
 
-.body{
+.body-container{
 
   display: flex;
   align-items: center;

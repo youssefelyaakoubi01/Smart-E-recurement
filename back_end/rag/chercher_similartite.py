@@ -5,16 +5,14 @@ from rag.get_embedding_function_m import get_embedding_function
 import time
 
 
-CHROMA_PATH = "./chroma_offres"
+CHROMA_PATH = "./chroma_consultation"
+# Configurer le Template de Prompt pour la Consultation d'Emploi
 
-# Configurer Template Prompt
-prompt_template= ChatPromptTemplate.from_messages(
-    [
-        ("system", "Fournissez les offres d'emploi les plus pertinentes pour ce CV {cv}, en tenant compte des catégories spécifiées et des autres critères."),
-        ("human", "En fonction du contexte suivant : {context}")
+prompt_template = ChatPromptTemplate.from_messages([
+    ("system", "En vous basant sur le contexte suivant extrait du livre et en utilisant vos propres connaissances si nécessaire, répondez à la question suivante : {context}"),
+    ("human", "Voici la question : {question}")
+])
 
-    ]
-)
 
 
 def fun_chercher_similarite(question):
@@ -32,6 +30,6 @@ def fun_chercher_similarite(question):
     print("**************** Fin  D'opération 'Chercher dans la base de données (ChromaDB) !'  ******************\n ")
 
     context_text = "\n\n---\n\n".join([doc.page_content for doc, _score in results])
-    prompt = prompt_template.format(context=context_text, cv=question)
+    prompt = prompt_template.format(context=context_text, question=question)
     print(prompt)
     return prompt

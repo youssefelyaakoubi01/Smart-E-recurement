@@ -42,7 +42,6 @@ def fun_chercher_similarite_offers(cv):
     prompt = PromptTemplate(
         template="Vous êtes un assistant RH expert. Analysez le CV fourni et les offres d'emploi disponibles. "
                  "Retournez une liste des offres les plus pertinentes sous forme d'objets structurés. "
-                 "Chaque offre doit inclure (Data Scientist ou  Database_Administrator ou Java Developper ou Network_Administrator ou ML engineer) et une description bien détaillée sur l'offre exemple:'Entreprise lieu exprience,salaire ...'.\n\n"
                  "CV : {cv}\n\nOffres d'emploi disponibles : {context}\n\n"
                  "{format_instructions}",
         input_variables=["cv", "context"],
@@ -52,7 +51,7 @@ def fun_chercher_similarite_offers(cv):
     
     # Création du modèle et de la chaîne
     client =ChatGroq(
-        model="llama3-70b-8192",
+        model="llama-3.1-70b-versatile",
         api_key="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",
         temperature=0 )
   

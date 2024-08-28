@@ -1,9 +1,0 @@
-fastapi
-uvicorn
-chromadb
-langchain
-langchain-groq
-langchain-community
-pydantic
-fitz
-pandas
