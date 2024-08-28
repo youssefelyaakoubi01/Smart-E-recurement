@@ -8,3 +8,4 @@ pydantic
 fitz
 pandas
 pymongo
+fastapi[standard]
