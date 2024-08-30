@@ -17,6 +17,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { OffresService } from './services/offres.service';
 import { CreateCVComponent } from './create-cv/create-cv.component';
 import { CommonModule } from '@angular/common';
+import { RecordingVoiceMessageComponent } from './recording-voice-message/recording-voice-message.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CommonModule } from '@angular/common';
     ChatLlmComponent,
     SearchOffersComponent,
     NotfoundComponent,
-    CreateCVComponent
+    CreateCVComponent,
+    RecordingVoiceMessageComponent
   ],
   imports: [
     BrowserModule,

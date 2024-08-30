@@ -1,6 +1,6 @@
 export interface Message {
     question: string,
-    answer:any
+    answer: any
 }
 
 export interface Conversation {

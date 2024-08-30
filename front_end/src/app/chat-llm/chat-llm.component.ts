@@ -44,7 +44,7 @@ export class ChatLlmComponent implements OnInit {
   ngOnInit(): void {
     this.chat_form = this.formBuilder.group({
       question: ['', [Validators.required, Validators.minLength(15)]],
-      llm_type: ['', Validators.required],
+      llm_type: ['', [Validators.required]],
     });
   }
 
@@ -77,7 +77,8 @@ export class ChatLlmComponent implements OnInit {
             answer: this.response,
           };
           this.messages.push(nouveauMessage2);
-          this.chat_form.reset({ question: '' });
+          this.chat_form.reset({ question: '',llm_type:'1' });
+          
         },
         (err) => {
           console.error(err);
@@ -98,7 +99,8 @@ export class ChatLlmComponent implements OnInit {
             messages: [],
           };
 
-          this.chat_form.reset({ question: '' });
+          this.chat_form.reset({ question: '',llm_type:'2' });
+
         }
       });
     }

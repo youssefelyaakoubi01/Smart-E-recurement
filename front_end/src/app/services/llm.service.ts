@@ -29,6 +29,10 @@ export class LlmService {
       `http://127.0.0.1:8000/consultation_rag/${consultation_request}`
     );
   }
+  EnvoyerAudio(audio: FormData): Observable<any> {
+    return this.http.post('http://localhost:8000/voiceMessageConsultation', audio);
+  }
+ 
 
 
 }

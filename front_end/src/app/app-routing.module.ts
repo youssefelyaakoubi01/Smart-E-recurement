@@ -9,6 +9,7 @@ import { SearchOffersComponent } from './search-offers/search-offers.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { CreateCVComponent } from './create-cv/create-cv.component';
 import { authGuard } from './auth.guard';
+import { RecordingVoiceMessageComponent } from './recording-voice-message/recording-voice-message.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'chatllm', component: ChatLlmComponent ,canActivate:[authGuard]},
   { path: 'search_offers', component: SearchOffersComponent,canActivate:[authGuard]},
   { path: 'createCV', component: CreateCVComponent,canActivate:[authGuard]},
+  { path: 'recordingVoice', component: RecordingVoiceMessageComponent,canActivate:[authGuard]},
   { path: '**', component: NotfoundComponent},
   
  

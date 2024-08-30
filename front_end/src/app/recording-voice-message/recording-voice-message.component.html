@@ -1,0 +1,50 @@
+<div class="w-60 h-40 mx-auto bg-white p-2 rounded-lg shadow-md">
+  <h1 class="text-sm text-center font-bold">Enregistreur Audio</h1>
+
+  <div class="flex justify-center mt-1">
+    <button
+      (click)="startRecording()"
+      [disabled]="isRecording"
+      class="px-4 py-2 text-xs bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 disabled:opacity-50"
+    >
+      Enregistrer
+    </button>
+    <button
+      (click)="stopRecording()"
+      [disabled]="!isRecording"
+      class="ml-4 px-4 text-xs py-2 bg-gray-500 text-white rounded hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 disabled:opacity-50"
+    >
+      Arrêter
+    </button>
+  </div>
+
+  <div class="text-sm text-purple-800">{{ recordingStatus }}</div>
+  
+
+  <div *ngIf="isRecording" class="flex justify-center items-center h-1/2 mb-0">
+    <div
+      *ngFor="let bar of [1, 2, 3, 4, 5]"
+      [@barAnimation]="isRecording ? 'active' : 'inactive'"
+      class="bg-red-500 w-2 mx-0 rounded-full"
+      [style.animation-delay]="bar * 0.15 + 's'"
+    ></div>
+  </div>
+
+  <audio
+    *ngIf="audioUrl"
+    [src]="audioUrl"
+    controls
+    class="w-36 h-8 mb-0 ml-3"
+  ></audio>
+
+  <div class="flex justify-center my-1">
+    <a
+     
+    (click)="uploadAudio()"
+      class="px-2 text-end py-1 text-xs bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+    >
+     
+      Envoyer
+    </a>
+  </div>
+</div>
