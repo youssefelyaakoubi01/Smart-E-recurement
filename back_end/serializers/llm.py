@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 import os
 from fastapi import UploadFile,File
+from models.user import Message,Conversation
 
 GROQ_API_KEY = os.getenv('GROQ_API_KEY')
 
@@ -21,7 +22,7 @@ def ask_llm_rag(question):
     print(reponse)
     return reponse
 
-def chat_llm(conversation):
+def chat_llm(conversation: Conversation):
         print(conversation.messages)
         reponse = client.invoke(f"system: Lire toute la conversation et répondre directement à la dernière question. Retourner uniquement la réponse directe. {conversation.messages}").content
         print(reponse)
@@ -50,4 +51,15 @@ def analyseCVCarriere(cv):
         resultatAnalyse= client.invoke(f"Voici un CV pour un candidat cherchant un poste dans {Domaine}. Analyse ce CV en fonction des exigences typiques pour ce type de poste. Identifie les points forts du candidat, les aspects qui nécessitent une amélioration, et recommande des compétences ou formations supplémentaires pour renforcer ce profil par rapport aux attentes du poste."+ cv).content
         return resultatAnalyse
 
+def repondreQuestionSimple(question:str):
+        reponse = client.invoke(f"system: Répondez à cette question: {question}").content
+        message = Message(question=question,answer=reponse)
+        print(message)
+        return message
 
+def VoiceFunctionTraitement(conversation: Conversation):
+        print(conversation.messages)
+        reponse = client.invoke(f"system: Lire toute la conversation et répondre directement à la dernière question. Retourner uniquement la réponse directe. {conversation.messages}").content
+        print(reponse)
+        ResponseMessage = Message(question=conversation.messages[-1].question,answer=reponse )
+        return ResponseMessage

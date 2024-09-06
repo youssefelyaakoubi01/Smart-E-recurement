@@ -1,8 +1,11 @@
-from fastapi import APIRouter,UploadFile,File
-from serializers.llm import ask_llm_rag,chat_llm,search_offers,analyseCV,analyseCVCarriere
+from fastapi import APIRouter,UploadFile,File,Form
+from serializers.llm import ask_llm_rag,chat_llm,search_offers,analyseCV,analyseCVCarriere,repondreQuestionSimple,VoiceFunctionTraitement
 import io
 from PyPDF2 import PdfReader
 from models.user import Conversation
+from groq import Groq 
+from models.user import Message
+import json
 llm_root = APIRouter()
 
 @llm_root.get('/consultation_rag/{cv}')
@@ -64,4 +67,44 @@ async def uploadAndAnalyseCV(file: UploadFile = File(...)):
     except Exception as e:
          return {"status": "error", "message": e}
 
+@llm_root.post("/voiceMessageConsultation")
+async def voiceMessageConsultation(conversation: str = Form(...),voiceFile: UploadFile = File(...)):
+   try:
+        # file:UploadFile = voiceObject.voiceFile.audio
+        conversation_obj = json.loads(conversation)
+        conversation_Class = Conversation(**conversation_obj)
+        contents = await voiceFile.read()
+       
+        Whisper_Goq = Groq(api_key="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",)
 
+        filename = "audio.wav"
+        transcription = Whisper_Goq.audio.transcriptions.create(
+        file=(filename, contents),
+        response_format="verbose_json",
+        model="whisper-large-v3",)
+        print(transcription.text)
+        message = Message(question=transcription.text,answer='')
+        conversation_Class.messages.append(message)
+        
+        return VoiceFunctionTraitement(conversation_Class)
+
+   except Exception as e:
+         return {"status": "error", "message": str(e)}
+
+# @llm_root.post("/voiceMessageConsultation")
+# async def voiceMessageConsultation(vcm: voiceMessageConversation):
+#    try:
+#         contents =  vcm.audio.file.read()
+#         Whisper_Groq_Client = Groq(api_key="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",)
+
+#         filename = "audio.wav"
+#         transcription = Whisper_Groq_Client.audio.transcriptions.create(
+#         file=(filename, contents),
+#         response_format="verbose_json",
+#         model="whisper-large-v3",)
+#         message = Message(question=transcription.text,answer='')
+#         vcm.conversation.append(message)
+#         return chat_llm(vcm.conversation)
+
+#    except Exception as e:
+#          return {"status": "error", "message": str(e)}

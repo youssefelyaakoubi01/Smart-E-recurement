@@ -1,5 +1,6 @@
 from pydantic import BaseModel,EmailStr
 from typing import List, Any
+from fastapi import UploadFile,File,Form
 
 class UserSignup(BaseModel):
     firstName: str 
@@ -19,3 +20,12 @@ class Message(BaseModel):
     answer: Any
 class Conversation(BaseModel):
     messages: List[Message]
+
+class voiceMessageConversation():
+    conversation: List[Message]
+
+
+
+# class VoiceObject(BaseModel):
+#     conversation: str = Form(...)
+#     voiceFile: UploadFile = File(...)
