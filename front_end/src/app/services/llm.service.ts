@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Conversation } from '../models/message';
+import { Conversation, Message } from '../models/message';
+import { VoiceObject } from '../models/voice-object';
 
 @Injectable({
   providedIn: 'root'
@@ -29,8 +30,8 @@ export class LlmService {
       `http://127.0.0.1:8000/consultation_rag/${consultation_request}`
     );
   }
-  EnvoyerAudio(audio: FormData): Observable<any> {
-    return this.http.post('http://localhost:8000/voiceMessageConsultation', audio);
+  EnvoyerAudio(voiceObject: FormData): Observable<Message> {
+    return this.http.post<Message>('http://localhost:8000/voiceMessageConsultation', voiceObject);
   }
  
 

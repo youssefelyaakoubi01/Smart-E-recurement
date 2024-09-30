@@ -6,3 +6,4 @@ export interface Message {
 export interface Conversation {
     messages: Message[]
 }
+

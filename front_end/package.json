@@ -20,6 +20,7 @@
     "@angular/router": "^16.0.0",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "flowbite": "^2.5.1",
+    "front-end": "file:",
     "html2pdf": "^0.0.11",
     "html2pdf.js": "^0.10.2",
     "jspdf": "^2.5.1",

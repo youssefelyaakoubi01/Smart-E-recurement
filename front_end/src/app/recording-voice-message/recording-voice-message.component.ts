@@ -1,7 +1,8 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { LlmService } from '../services/llm.service';
+import { VoiceObject } from '../models/voice-object';
+import { initFlowbite } from 'flowbite';
 
 
 @Component({
@@ -10,16 +11,23 @@ import { LlmService } from '../services/llm.service';
   styleUrls: ['./recording-voice-message.component.css'],
   
 })
-export class RecordingVoiceMessageComponent implements OnDestroy{
+export class RecordingVoiceMessageComponent implements OnDestroy,OnInit{
   private mediaRecorder: MediaRecorder | null = null;
   private audioChunks: Blob[] = [];
   audioBlob!: Blob;
   isRecording = false;
   recordingStatus = '';
   audioUrl: SafeUrl | null = null;
+  voiceObject!: VoiceObject;
 
   constructor(private sanitizer: DomSanitizer,private llmservice: LlmService) {}
+  ngOnInit(): void {
 
+    initFlowbite();
+  
+  
+  }
+  
   async startRecording() {
     this.audioChunks = [];
     try {
@@ -57,20 +65,20 @@ export class RecordingVoiceMessageComponent implements OnDestroy{
       this.mediaRecorder.stream.getTracks().forEach(track => track.stop());
     }
   }
-  uploadAudio(){
-    if (this.audioBlob) {
-      const formData = new FormData();
-    formData.append('audio', this.audioBlob, 'recording.wav');
-    this.llmservice.EnvoyerAudio(formData).subscribe(
-      (reponse)=>{
-        console.log(reponse)
-      },
-      (err)=>{
-        console.error(err);
+//   uploadAudio(){
+//     if (this.audioBlob) {
+//       const formData = new FormData();
+//     formData.append('audio', this.audioBlob, 'recording.wav');
+//     this.llmservice.EnvoyerAudio(formData).subscribe(
+//       (reponse)=>{
+//         console.log(reponse)
+//       },
+//       (err)=>{
+//         console.error(err);
         
-      }
-    )
+//       }
+//     )
       
-  }
-}
+//   }
+// }
 }
